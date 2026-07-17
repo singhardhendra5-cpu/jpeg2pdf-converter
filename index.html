@@ -105,25 +105,49 @@
   }
 
   .dropzone{
-    border:2px dashed var(--margin-red);
-    background:var(--card);
-    padding:34px 16px;
+    position:relative;
+    background:transparent;
+    padding:6px 0 0;
     text-align:center;
     cursor:pointer;
-    transition:background 0.15s ease, transform 0.1s ease;
   }
-  .dropzone:hover, .dropzone.drag{
-    background:#FFF9E9;
+  .dz-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:100%;
+    padding:20px 20px;
+    background:linear-gradient(180deg, #4A7256 0%, var(--stamp-green) 100%);
+    color:#FBF8EE;
+    border-radius:14px;
+    box-shadow:0 6px 0 #2A4030, 0 10px 20px -6px rgba(35,48,71,0.35);
+    transition:transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
   }
-  .dropzone:active{ transform:scale(0.995); }
-  .dropzone .dz-title{
+  .dropzone:hover .dz-btn{
+    background:linear-gradient(180deg, #547D63 0%, #446B4F 100%);
+  }
+  .dropzone:active .dz-btn,
+  .dropzone.drag .dz-btn{
+    transform:translateY(4px);
+    box-shadow:0 2px 0 #2A4030, 0 4px 10px -4px rgba(35,48,71,0.35);
+  }
+  .dz-icon{
+    width:34px; height:34px;
+    flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .dz-icon svg{ width:30px; height:30px; }
+  .dz-cta{
     font-family:'Special Elite', monospace;
-    font-size:15px;
-    margin-bottom:4px;
+    font-size:19px;
+    letter-spacing:0.4px;
   }
   .dropzone .dz-sub{
+    display:block;
     font-size:11.5px;
     color:var(--ink-soft);
+    margin-top:12px;
   }
   input[type=file]{ display:none; }
 
@@ -333,8 +357,17 @@
   <hr class="divider">
 
   <label class="dropzone" id="dropzone" for="fileInput" tabindex="0">
-    <div class="dz-title">+ Images चुनें</div>
-    <div class="dz-sub">JPEG / PNG · एक साथ कई images चुन सकते हैं · यहाँ drag भी कर सकते हैं</div>
+    <div class="dz-btn">
+      <span class="dz-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path>
+          <polyline points="7 9 12 4 17 9"></polyline>
+          <line x1="12" y1="4" x2="12" y2="16"></line>
+        </svg>
+      </span>
+      <span class="dz-cta">Images चुनें</span>
+    </div>
+    <span class="dz-sub">JPEG / PNG · एक साथ कई images चुन सकते हैं · यहाँ drag भी कर सकते हैं</span>
     <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png" multiple>
   </label>
 
